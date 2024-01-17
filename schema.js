@@ -4,30 +4,33 @@ const schema = buildSchema(`
             type Product {
                 id: ID
                 name: String
-                desc: String
+                description: String
                 price: Float
                 soldOut: Boolean
+                inventory: Int
                 stores: [Store]
             }
 
             type Query {
-                product: Product 
+                getProduct(id: ID): Product 
             }
 
             type Store {
                 store: String
             }
 
-            type StoreInput {
+            input StoreInput {
                 store: String
             }
 
             input ProductInput {
                 id:ID
                 name:String
-                desc:String
+                description:String
                 price: Float
                 soldOut: Boolean
+                inventory: Int
+                stores: [StoreInput]!
             }
 
             type Mutation {
