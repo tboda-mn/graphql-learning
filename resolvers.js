@@ -4,7 +4,7 @@ class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.soldOut = soldout;
+        this.soldout = soldout;
         this.stores = stores;
         this.inventory = inventory;
     }

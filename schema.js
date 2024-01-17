@@ -6,7 +6,7 @@ const schema = buildSchema(`
                 name: String
                 description: String
                 price: Float
-                soldOut: Boolean
+                soldout: Soldout
                 inventory: Int
                 stores: [Store]
             }
@@ -28,15 +28,21 @@ const schema = buildSchema(`
                 name:String
                 description:String
                 price: Float
-                soldOut: Boolean
+                soldout: Soldout
                 inventory: Int
                 stores: [StoreInput]!
+            }
+
+            enum Soldout {
+                SOLDOUT
+                ONSALE
             }
 
             type Mutation {
                 createProduct(input: ProductInput): Product
             }
 
-`)//when we are asking a query with hello, it's simply going to return a string
+`)//when we are asking a query with hello, it's simply going to return a string, enum can contain only those 2 values => we can restrict it to
+//take only those 2 values
 
 export default schema; 
