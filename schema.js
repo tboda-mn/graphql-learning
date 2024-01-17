@@ -7,10 +7,15 @@ const schema = buildSchema(`
                 desc: String
                 price: Float
                 soldOut: Boolean
+                stores: [Store]!
             }
 
             type Query {
                 product: Product 
+            }
+
+            type Store {
+                store: String
             }
 
 `)//when we are asking a query with hello, it's simply going to return a string

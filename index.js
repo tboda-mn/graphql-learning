@@ -14,7 +14,11 @@ const root = { product: () => {
         "name": "widget",
         "desc": "good widget",
         "price": 250.99,
-        "soldOut": false
+        "soldOut": false,
+        "stores":[
+            {store: "Lothukunta"},
+            {store: "Balnagar"}
+        ],
     }
 }
 }; //create a response
