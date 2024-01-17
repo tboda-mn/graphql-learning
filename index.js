@@ -8,6 +8,21 @@ app.get('/',(req,res) => {
     res.send('Graphql is chillar')
 });
 
+class Product {
+    constructor(id, {name, description,price,soldout,stores}) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.soldOut = soldout;
+        this.stores = stores;
+    }
+}
+
+const productDatabase = {
+     
+};
+
 const root = { product: () => {
     return {
         "id":1,
@@ -20,7 +35,12 @@ const root = { product: () => {
             {store: "Balnagar"}
         ],
     }
-}
+},
+    createProduct: ({input}) => {
+        let id = require('crypto').randomBytes(10).toString('hex');
+        productDatabase[id] = input;
+        return new Product(id,input)
+    }
 }; //create a response
 
 app.use('/graphql',graphqlHTTP({
