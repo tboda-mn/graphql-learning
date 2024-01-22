@@ -1,3 +1,6 @@
+import { reject } from 'lodash';
+import { Widgets } from './dbConnectors';
+
 class Product {
     constructor(id, {name, description, price, soldout, inventory, stores}) {
         this.id = id;
@@ -13,10 +16,16 @@ class Product {
 const productDatabase = {};
 
 const resolvers = {
-    getProducts: ({id}) => {
-        console.log(`id ${id}`)
-        return new Product(id, productDatabase[id])
+    getProduct: ({ id }) => {
+        return Widgets.findById({ _id: id })
+            .then(product => {
+                return product;
+            })
+            .catch(err => {
+                throw err;
+            });
     },
+        // });//sometimes if there is any lag in mongo db, its gonna try to return result and if it doesnt return result it'll lead to an error
     createProduct: ({input}) => {
         let id = require('crypto').randomBytes(10).toString('hex');
         productDatabase[id] = input;
